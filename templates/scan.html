@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart ID Scan</title>
+</head>
+<body>
+
+    <h2>Child Tracking System – Smart ID Scan</h2>
+
+    <form method="POST">
+        <label>Student ID:</label><br>
+        <input type="text" name="student_id" required><br><br>
+
+        <label>Location:</label><br>
+        <select name="location">
+            <option>Boarded School Bus</option>
+            <option>Reached School</option>
+            <option>Left School</option>
+            <option>Reached Home</option>
+        </select><br><br>
+
+        <button type="submit">Scan ID Card</button>
+    </form>
+
+    <p style="color: green;">{{ message }}</p>
+
+    <br>
+    <a href="/parent">Go to Parent Tracking Page</a>
+
+</body>
+</html>
