@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Parent Tracking</title>
+</head>
+<body>
+
+<h2>Parent Tracking Page</h2>
+
+<form method="post">
+    <label>Enter Student ID:</label><br>
+    <input type="text" name="student_id" required><br><br>
+    <button type="submit">Track</button>
+</form>
+
+<hr>
+
+{% if records %}
+<h3>Tracking History</h3>
+<table border="1">
+    <tr>
+        <th>Location</th>
+        <th>Time</th>
+    </tr>
+    {% for row in records %}
+    <tr>
+        <td>{{ row[0] }}</td>
+        <td>{{ row[1] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+
+<br>
+<a href="/">Back to Scan Page</a>
+
+</body>
+</html>
