@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduTrack - Student Safety Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <aside>
+        <div class="logo">Edu<span>Track</span></div>
+        <ul class="nav-links">
+            <li class="nav-item active" id="navDashboard" onclick="switchView('dashboard')">Dashboard</li>
+            <li class="nav-item" id="navParents" onclick="switchView('parents')">Parent Database</li>
+        </ul>
+    </aside>
+
+    <main>
+        <div id="dashboardView">
+            <header>
+                <h1>IoT Student Attendance & Safety Tracker</h1>
+                <p>Frontend system prototype showcasing RFID hardware simulation and automated web-hooks.</p>
+            </header>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">Total Registered Students</div>
+                    <div class="stat-value">1,240</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Present On Campus Today</div>
+                    <div class="stat-value" id="presentCount">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">SMS Notifications Dispatched</div>
+                    <div class="stat-value" id="smsCount">0</div>
+                </div>
+            </div>
+
+            <div class="dashboard-content">
+                <div class="card">
+                    <h2>RFID Card Reader Emulator</h2>
+                    <div class="form-group">
+                        <label for="studentSelector">Select a Student ID Card to scan:</label>
+                        <select id="studentSelector">
+                            <option value="STU-1001" data-name="Aarav Sharma" data-parent="+91 98765 43210">ID: STU-1001 (Aarav Sharma)</option>
+                            <option value="STU-1002" data-name="Diya Patel" data-parent="+91 91234 56789">ID: STU-1002 (Diya Patel)</option>
+                            <option value="STU-1003" data-name="Rohan Das" data-parent="+91 98888 77777">ID: STU-1003 (Rohan Das)</option>
+                            <option value="STU-1004" data-name="Ananya Iyer" data-parent="+91 94440 12345">ID: STU-1004 (Ananya Iyer)</option>
+                            <option value="STU-1005" data-name="Kabir Malhotra" data-parent="+91 96500 98765">ID: STU-1005 (Kabir Malhotra)</option>
+                            <option value="STU-1006" data-name="Isha Kapoor" data-parent="+91 98100 55544">ID: STU-1006 (Isha Kapoor)</option>
+                            <option value="STU-1007" data-name="Arjun Reddy" data-parent="+91 81234 56789">ID: STU-1007 (Arjun Reddy)</option>
+                            <option value="STU-1008" data-name="Meera Nair" data-parent="+91 94470 11223">ID: STU-1008 (Meera Nair)</option>
+                            <option value="STU-1009" data-name="Vivaan Joshi" data-parent="+91 99200 44332">ID: STU-1009 (Vivaan Joshi)</option>
+                            <option value="STU-1010" data-name="Zara Khan" data-parent="+91 98200 88776">ID: STU-1010 (Zara Khan)</option>
+                        </select>
+                    </div>
+                    <button class="btn" onclick="triggerHardwareScan()">Simulate ID Card Tap</button>
+                </div>
+
+                <div class="card">
+                    <h2>Parent's Mobile Notification Stream</h2>
+                    <p style="font-size: 0.85rem; color:#64748b; margin-bottom: 12px;">Real-time API push message preview:</p>
+                    <div class="phone-mockup">
+                        <div id="smsWidget" class="sms-alert">
+                            <div class="sms-header">
+                                <span>💬 CAMPUS MESSENGER</span>
+                                <span id="smsTime">Just Now</span>
+                            </div>
+                            <div id="smsMessage" class="sms-body">
+                                Waiting for scan...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card table-container">
+                    <h2>Real-Time Hardware Log Stream</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Student ID</th>
+                                <th>Student Name</th>
+                                <th>Timestamp</th>
+                                <th>Relay Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="logRecords">
+                            <tr id="noDataRow">
+                                <td colspan="4" style="text-align: center; color: #64748b; padding: 30px;">
+                                    No hardware scan instances detected yet. Tap an ID card above.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div id="parentsView" style="display: none;">
+            <header>
+                <h1>Parent Emergency Contact Directory</h1>
+                <p>Central repository mapping student IDs directly to emergency notification nodes.</p>
+            </header>
+            
+            <div class="card table-container">
+                <h2>Registered Parent Nodes</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Student ID</th>
+                            <th>Student Name</th>
+                            <th>Parent/Guardian Name</th>
+                            <th>Registered Mobile Link</th>
+                            <th>Alert Channel</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><b>STU-1001</b></td><td>Aarav Sharma</td><td>Rajesh Sharma</td><td>+91 98765 43210</td><td><span class="badge">SMS Active</span></td></tr>
+                        <tr><td><b>STU-1002</b></td><td>Diya Patel</td><td>Meera Patel</td><td>+91 91234 56789</td><td><span class="badge">SMS Active</span></td></tr>
+                        <tr><td><b>STU-1003</b></td><td>Rohan Das</td><td>Amit Das</td><td>+91 98888 77777</td><td><span class="badge">SMS Active</span></td></tr>
+                        <tr><td><b>STU-1004</b></td><td>Ananya Iyer</td><td>Venkatesh Iyer</td><td>+91 94440 12345</td><td><span class="badge">SMS Active</span></td></tr>
+                        <tr><td><b>STU-1005</b></td><td>Kabir Malhotra</td><td>Sunil Malhotra</td><td>+91 96500 98765</td><td><span class="badge">SMS Active</span></td></tr>
+                        <tr><td><b>STU-1006</b></td><td>Isha Kapoor</td><td>Sanjay Kapoor</td><td>+91 98100 55544</td><td><span class="badge">SMS Active</span></td></tr>
+                        <tr><td><b>STU-1007</b></td><td>Arjun Reddy</td><td>K. R. Reddy</td><td>+91 81234 56789</td><td><span class="badge">SMS Active</span></td></tr>
+                        <tr><td><b>STU-1008</b></td><td>Meera Nair</td><td>Ramesh Nair</td><td>+91 94470 11223</td><td><span class="badge">SMS Active</span></td></tr>
+                        <tr><td><b>STU-1009</b></td><td>Vivaan Joshi</td><td>Nitin Joshi</td><td>+91 99200 44332</td><td><span class="badge">SMS Active</span></td></tr>
+                        <tr><td><b>STU-1010</b></td><td>Zara Khan</td><td>Asif Khan</td><td>+91 98200 88776</td><td><span class="badge">SMS Active</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

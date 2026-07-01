@@ -1,0 +1,296 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+    --bg-main: #ffffff;         /* Pure crisp white canvas */
+    --sidebar-bg: #000000;      /* Pitch black sidebar for stark contrast */
+    --text-light: #71717a;      /* Medium zinc gray for labels */
+    --text-dark: #000000;       /* Solid black text */
+    --primary: #000000;         /* Solid black components */
+    --primary-hover: #27272a;   /* Very dark gray on hover */
+    --success: #000000;         /* Kept black to protect the monochrome theme */
+    --card-bg: #ffffff;         /* Stark white card containers */
+    --border-color: #e4e4e7;    /* Fine, elegant border lines */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-dark);
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar Layout */
+aside {
+    width: 250px;
+    background-color: var(--sidebar-bg);
+    padding: 40px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+}
+
+.logo {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -1px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.logo span {
+    color: #71717a;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.nav-item {
+    padding: 10px 14px;
+    border-radius: 0px; /* Sharp geometric corners */
+    color: #a1a1aa;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.nav-item:hover {
+    color: #ffffff;
+}
+
+.nav-item.active {
+    background-color: #ffffff;
+    color: #000000;
+    font-weight: 600;
+}
+
+/* Main Content Area */
+main {
+    flex: 1;
+    padding: 56px;
+    max-width: 1140px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+header {
+    margin-bottom: 48px;
+    border-bottom: 2px solid #000000;
+    padding-bottom: 24px;
+}
+
+header h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    letter-spacing: -1px;
+}
+
+header p {
+    color: var(--text-light);
+    margin-top: 8px;
+    font-size: 1.05rem;
+}
+
+/* Stark Stat Cards */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    margin-bottom: 48px;
+}
+
+.stat-card {
+    background: var(--card-bg);
+    padding: 24px;
+    border: 1px solid #000000; /* High contrast black outlines */
+    box-shadow: 4px 4px 0px #000000; /* Retro sharp solid block shadow */
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.stat-value {
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin-top: 6px;
+    color: var(--text-dark);
+}
+
+/* Split Dashboard Content */
+.dashboard-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+@media (max-width: 900px) {
+    .dashboard-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 32px;
+}
+
+.card h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: var(--text-dark);
+    letter-spacing: -0.5px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #000000;
+    padding-bottom: 8px;
+}
+
+/* Form Controls */
+.form-group {
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    text-transform: uppercase;
+}
+
+select {
+    padding: 14px 16px;
+    border: 1px solid #000000;
+    border-radius: 0px; /* Sharp modern edges */
+    font-size: 0.95rem;
+    background-color: #ffffff;
+    outline: none;
+    color: var(--text-dark);
+    font-weight: 500;
+}
+
+.btn {
+    background-color: #000000;
+    color: #ffffff;
+    border: 1px solid #000000;
+    padding: 14px 24px;
+    border-radius: 0px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+}
+
+.btn:hover {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* Phone Mockup Frame */
+.phone-mockup {
+    background: #ffffff;
+    padding: 20px;
+    margin-top: 12px;
+    border: 1px dashed #000000;
+}
+
+.sms-alert {
+    background: #000000;
+    color: #ffffff;
+    border-radius: 0px;
+    padding: 18px;
+    display: none;
+    animation: fadeIn 0.3s steps(4) forwards; /* Retro grid animation step */
+}
+
+.sms-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #a1a1aa;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #27272a;
+    padding-bottom: 4px;
+}
+
+.sms-body {
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.sms-body b {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+/* Sharp Tables */
+.table-container {
+    grid-column: 1 / -1;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th, td {
+    padding: 16px;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.95rem;
+}
+
+th {
+    background-color: #000000;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+td strong {
+    color: #000000;
+}
+
+.badge {
+    display: inline-block;
+    padding: 4px 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    background-color: #000000;
+    color: #ffffff;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
